@@ -4,7 +4,7 @@
         <form @submit.prevent="created">
          <!-- Nombre -->
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4">
               <fg-input
                 type="text"
                 label="First Name"
@@ -15,12 +15,21 @@
               </fg-input>
             </div>
             <!-- Apellidos -->
-            <div class="col-md-7">
+            <div class="col-md-5">
               <fg-input
                 type="text"
                 label="Last Name"
                 placeholder="Enter last name"
                 v-model="customer.lastName"
+              >
+              </fg-input>
+            </div>
+            <div class="col-md-3">
+              <fg-input
+                type="text"
+                label="Customer Id"
+                placeholder="Enter a Id"
+                v-model="customer.customerId"
               >
               </fg-input>
             </div>
@@ -94,6 +103,7 @@ export default {
       customer: {
         firstName: "",
         lastName: "",
+        customerId: "",
         email: "",
         creditLimit: "",
         incomeLevel: "",
@@ -113,13 +123,14 @@ export default {
       axios.post('http://localhost:3000/customers', {
         firstName: this.customer.firstName,
         lastName: this.customer.lastName,
+        customerId: this.customer.customerId,
         email: this.customer.email,
         creditLimit: this.customer.creditLimit,
         incomeLevel: this.customer.incomeLevel,
         region: this.customer.region
       }).then(res => {
         console.log(res);
-        this.$router.push('/customers');
+        this.$router.push('/table-list');
       }).catch(err => {
         this.msg = err.response.data.message;
         console.log(err);
