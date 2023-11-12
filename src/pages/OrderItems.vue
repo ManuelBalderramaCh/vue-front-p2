@@ -1,0 +1,70 @@
+<template>
+  <div class="row">
+    <div class="col-12">
+      <card :title="table1.title" :subTitle="table1.subTitle">
+        <div slot="raw-content" class="table-responsive">
+          <paper-table :data="table1.data" :columns="table1.columns">
+          </paper-table>
+        </div>
+      </card>
+    </div>
+  </div>
+</template>
+<script>
+import { PaperTable } from "@/components";
+const tableColumns = ["Id", "Line Item Id", "Product Id", "Unit Price", "Quantity"];
+const tableData = [
+  {
+    id: 1,
+    name: "Dakota Rice",
+    salary: "$36.738",
+    country: "Niger",
+    city: "Oud-Turnhout",
+  },
+  {
+    id: 2,
+    name: "Minerva Hooper",
+    salary: "$23,789",
+    country: "Curaçao",
+    city: "Sinaai-Waas",
+  },
+  {
+    id: 3,
+    name: "Sage Rodriguez",
+    salary: "$56,142",
+    country: "Netherlands",
+    city: "Baileux",
+  },
+  {
+    id: 4,
+    name: "Philip Chaney",
+    salary: "$38,735",
+    country: "Korea, South",
+    city: "Overland Park",
+  },
+  {
+    id: 5,
+    name: "Doris Greene",
+    salary: "$63,542",
+    country: "Malawi",
+    city: "Feldkirchen in Kärnten",
+  },
+];
+
+export default {
+  components: {
+    PaperTable,
+  },
+  data() {
+    return {
+      table1: {
+        title: "Order Items",
+        subTitle: "Here is a list of all the order items in the database",
+        columns: [...tableColumns],
+        data: [...tableData],
+      }
+    };
+  },
+};
+</script>
+<style></style>
