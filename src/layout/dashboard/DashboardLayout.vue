@@ -2,15 +2,15 @@
   <div class="wrapper">
     <side-bar>
       <template slot="links">
-        <sidebar-link to="/stats" name="Customer" icon="ti-user" />
-        <sidebar-link to="/product-information" name="Product Information" icon="ti-view-list-alt" />
+        <sidebar-link to="/landing-page" name="Landing Page" icon="ti-desktop" />
+        <sidebar-link to="/product-information" name="Product Information" icon="ti-shopping-cart" />
         <sidebar-link
           to="/table-list"
           name="Customers"
-          icon="ti-view-list-alt"
+          icon="ti-user"
         />
         <sidebar-link to="/order-items" name="Order Items" icon="ti-view-list-alt" />
-        <sidebar-link to="/order-list" name="Orders" icon="ti-view-list-alt" />
+        <sidebar-link to="/order-list" name="Orders" icon="ti-bag" />
       </template>
     </side-bar>
     <div class="main-panel">

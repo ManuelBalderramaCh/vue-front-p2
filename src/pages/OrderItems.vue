@@ -21,16 +21,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="orderItem in orderItems" :key="orderItem._id">
-                    <td>{{ orderItem._id }}</td>
-                    <td>{{ orderItem.lineItemId }}</td>
-                    <td>{{ orderItem.productId }}</td>
-                    <td>{{ orderItem.unitPrice }}</td>
+                  <tr v-for="orderItem in orderItems" :key="orderItem.order_id">
+                    <td>{{ orderItem.order_id }}</td>
+                    <td>{{ orderItem.line_item_id }}</td>
+                    <td>{{ orderItem.product_id  }}</td>
+                    <td>{{ orderItem.unit_price }}</td>
                     <td>{{ orderItem.quantity }}</td>
                     <td><router-link tag="button"
                                         class="btn btn-light btn-sm">Ir</router-link></td>
-                    <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(orderItem._id)">Edit</button></td>
-                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(orderItem._id)">Delete</button></td>
+                    <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(orderItem.order_id)">Edit</button></td>
+                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(orderItem.order_id)">Delete</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -57,18 +57,18 @@ export default {
       axios.get('http://localhost:3000/order_items')
       .then(res => this.orderItems = res.data.obj);
     },
-    edit(orderItemId){
-            axios.get(`http://localhost:3000/order_items/${orderItemId}`)
+    edit(order_item_id){
+            axios.get(`http://localhost:3000/order_items/${order_item_id}`)
             .then(res => {
                 console.log(res);
-                this.$router.push(`/order_item-edit/${orderItemId}`)
+                this.$router.push(`/order_item-edit/${order_item_id}`)
             }).catch(err => {
                 this.msg = err.response.data.message;
                 console.log(err);
             });
     },
-    deleteP(orderItemId){
-        axios.delete(`http://localhost:3000/order_items/${orderItemId}`)
+    deleteP(order_item_id){
+        axios.delete(`http://localhost:3000/order_items/${order_item_id}`)
         .then(res => {
             console.log(res);
             this.list();
@@ -77,6 +77,9 @@ export default {
             console.log(err);
         });
     },
+  },
+  mounted(){
+    this.list();
   },
 };
 </script>

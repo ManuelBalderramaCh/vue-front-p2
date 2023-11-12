@@ -10,7 +10,7 @@
                 label="First Name"
                 :disabled="false"
                 placeholder="Enter name"
-                v-model="customer.firstName"
+                v-model="customer.cust_first_name"
               >
               </fg-input>
             </div>
@@ -20,7 +20,7 @@
                 type="text"
                 label="Last Name"
                 placeholder="Enter last name"
-                v-model="customer.lastName"
+                v-model="customer.cust_last_name"
               >
               </fg-input>
             </div>
@@ -29,7 +29,7 @@
                 type="text"
                 label="Customer Id"
                 placeholder="Enter a Id"
-                v-model="customer.customerId"
+                v-model="customer.customer_id"
               >
               </fg-input>
             </div>
@@ -41,7 +41,7 @@
                 type="text"
                 label="Email"
                 placeholder="Enter Email"
-                v-model="customer.email"
+                v-model="customer.cust_email"
               >
               </fg-input>
             </div>
@@ -54,7 +54,7 @@
                 type="text"
                 label="Credit Limit"
                 placeholder="Enter a credit limit"
-                v-model="customer.creditLimit"
+                v-model="customer.credit_limit"
               >
               </fg-input>
             </div>
@@ -64,7 +64,7 @@
                 type="text"
                 label="Income Level"
                 placeholder="Enter income level"
-                v-model="customer.incomeLevel"
+                v-model="customer.income_level"
               >
               </fg-input>
             </div>
@@ -75,6 +75,7 @@
                 <option>A</option>
                 <option>B</option>
                 <option>C</option>
+                <option>D</option>
               </select>
             </div>
           </div>
@@ -101,12 +102,12 @@ export default {
   data() {
     return {
       customer: {
-        firstName: "",
-        lastName: "",
-        customerId: "",
-        email: "",
-        creditLimit: "",
-        incomeLevel: "",
+        cust_first_name: "",
+        cust_last_name: "",
+        customer_id: "",
+        cust_email: "",
+        credit_limit: "",
+        income_level: "",
         region: "",
       },
     };
@@ -121,12 +122,12 @@ export default {
     },
     created(){
       axios.post('http://localhost:3000/customers', {
-        firstName: this.customer.firstName,
-        lastName: this.customer.lastName,
-        customerId: this.customer.customerId,
-        email: this.customer.email,
-        creditLimit: this.customer.creditLimit,
-        incomeLevel: this.customer.incomeLevel,
+        cust_first_name: this.customer.cust_first_name,
+        cust_last_name: this.customer.cust_last_name,
+        customer_id: this.customer.customer_id,
+        cust_email: this.customer.cust_email,
+        credit_limit: this.customer.credit_limit,
+        income_level: this.customer.income_level,
         region: this.customer.region
       }).then(res => {
         console.log(res);

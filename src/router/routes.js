@@ -2,8 +2,9 @@ import DashboardLayout from "@/layout/dashboard/DashboardLayout.vue";
 // GeneralViews
 import NotFound from "@/pages/NotFoundPage.vue";
 
+import LandingPage from "@/pages/LandingPage.vue";
+
 // Lists
-import UserProfile from "@/pages/UserProfile.vue";
 import TableList from "@/pages/TableList.vue";
 import OrderList from '@/pages/OrderList.vue';
 import OrderItems from '@/pages/OrderItems.vue';
@@ -12,17 +13,43 @@ import ProductInformation from '@/pages/ProductInformation.vue';
 import CreateOrder from '@/pages/CreateOrder.vue'
 import CreateCustomer from '@/pages/CreateCustomer.vue';
 import CreateProduct from '@/pages/CreateProduct.vue';
+// Edits
+import EditCustomer from "@/pages/EditCustomer.vue";
+import EditProduct from "@/pages/EditProduct.vue";
+import EditOrder from "@/pages/EditOrder.vue";
+import EditOrderItems from "@/pages/EditOrderItems.vue";
 
 const routes = [
   {
     path: "/",
     component: DashboardLayout,
-    redirect: "/stats",
+    redirect: "/landing-page",
     children: [
       {
-        path: "stats",
-        name: "stats",
-        component: UserProfile,
+        path: "landing-page",
+        name: "landing-page",
+        component: LandingPage,
+      },
+      // Edits
+      {
+        path: "edit-order-item", // path: "edit-order-item/:id",
+        name: "edit-order-item",
+        component: EditOrderItems,
+      },
+      {
+        path: "edit-order", // path: "edit-order/:id",
+        name: "edit-order",
+        component: EditOrder,
+      },
+      {
+        path: "edit-product", // path: "edit-product/:id",
+        name: "edit-product",
+        component: EditProduct,
+      },
+      {
+        path: "edit-customer", // path: "edit-customer/:id",
+        name: "edit-customer",
+        component: EditCustomer,
       },
       // Lists
       {

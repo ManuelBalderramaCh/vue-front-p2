@@ -27,22 +27,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="product in products" :key="product._id">
-                    <td>{{ product._id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.category }}</td>
-                    <td>{{ product.weightClass }}</td>
-                    <td>{{ product.warrantyPeriod }}</td>
-                    <td>{{ product.supplier }}</td>
-                    <td>{{ product.productStatus }}</td>
-                    <td>{{ product.listPrice }}</td>
-                    <td>{{ product.minimumPrice }}</td>
-                    <td>{{ product.catalogURL }}</td>
+                  <tr v-for="product in products" :key="product.product_id">
+                    <td>{{ product.product_id }}</td>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.product_description }}</td>
+                    <td>{{ product.category_id }}</td>
+                    <td>{{ product.weight_class }}</td>
+                    <td>{{ product.warranty_period }}</td>
+                    <td>{{ product.supplier_id }}</td>
+                    <td>{{ product.product_status }}</td>
+                    <td>{{ product.list_price }}</td>
+                    <td>{{ product.min_price }}</td>
+                    <td>{{ product.catalog_url }}</td>
                     <td><router-link tag="button"
                                         class="btn btn-light btn-sm">Ir</router-link></td>
-                    <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(product._id)">Edit</button></td>
-                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(product._id)">Delete</button></td>
+                    <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(product.product_id)">Edit</button></td>
+                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(product.product_id)">Delete</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -69,18 +69,18 @@ export default {
       axios.get('http://localhost:3000/products')
       .then(res => this.products = res.data.obj);
     },
-    edit(productId){
-            axios.get(`http://localhost:3000/products/${productId}`)
+    edit(product_id){
+            axios.get(`http://localhost:3000/products/${product_id}`)
             .then(res => {
                 console.log(res);
-                this.$router.push(`/product-edit/${productId}`)
+                this.$router.push(`/edit-product/${product_id}`)
             }).catch(err => {
                 this.msg = err.response.data.message;
                 console.log(err);
             });
     },
-    deleteP(productId){
-        axios.delete(`http://localhost:3000/products/${productId}`)
+    deleteP(product_id){
+        axios.delete(`http://localhost:3000/products/${product_id}`)
         .then(res => {
             console.log(res);
             this.list();
@@ -89,6 +89,9 @@ export default {
             console.log(err);
         });
     },
+  },
+  mounted(){
+    this.list();
   },
 };
 </script>

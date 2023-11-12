@@ -23,18 +23,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="customer in customers" :key="customer._id">
-                    <td>{{ customer._id }}</td>
-                    <td>{{ customer.firstName }}</td>
-                    <td>{{ customer.lastName }}</td>
+                  <tr v-for="customer in customers" :key="customer.customer_id">
+                    <td>{{ customer.customer_id}}</td>
+                    <td>{{ customer.cust_first_name }}</td>
+                    <td>{{ customer.cust_last_name }}</td>
                     <td>{{ customer.creditLimit }}</td>
-                    <td>{{ customer.email }}</td>
-                    <td>{{ customer.incomeLevel }}</td>
+                    <td>{{ customer.cust_email }}</td>
+                    <td>{{ customer.income_level }}</td>
                     <td>{{ customer.region }}</td>
                     <td><router-link tag="button"
                                         class="btn btn-light btn-sm">Ir</router-link></td>
-                    <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(customer._id)">Edit</button></td>
-                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(customer._id)">Delete</button></td>
+                    <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(customer.customer_id)">Edit</button></td>
+                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(customer.customer_id, customer.region)">Delete</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -61,18 +61,18 @@ export default {
       axios.get('http://localhost:3000/customers')
       .then(res => this.customers = res.data.obj);
     },
-    edit(customerId){
-            axios.get(`http://localhost:3000/customers/${customerId}`)
+    edit(customer_id){
+            axios.get(`http://localhost:3000/customers/${customer_id}`)
             .then(res => {
                 console.log(res);
-                this.$router.push(`/customer-edit/${customerId}`)
+                this.$router.push(`/edit-customer/${customer_id}`)
             }).catch(err => {
                 this.msg = err.response.data.message;
                 console.log(err);
             });
     },
-    deleteP(customerId){
-        axios.delete(`http://localhost:3000/projects/${customerId}`)
+    deleteP(customer_id, region){
+        axios.delete(`http://localhost:3000/projects/${customer_id, region}`)
         .then(res => {
             console.log(res);
             this.list();
@@ -81,6 +81,9 @@ export default {
             console.log(err);
         });
     },
+  },
+  mounted(){
+    this.list();
   },
 };
 </script>
