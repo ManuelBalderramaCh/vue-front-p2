@@ -1,7 +1,7 @@
 <template>
     <card class="card" title="Create a New Customer">
       <div>
-        <form @submit.prevent>
+        <form @submit.prevent="created">
          <!-- Nombre -->
           <div class="row">
             <div class="col-md-5">
@@ -10,7 +10,7 @@
                 label="First Name"
                 :disabled="false"
                 placeholder="Enter name"
-                v-model="user.company"
+                v-model="customer.firstName"
               >
               </fg-input>
             </div>
@@ -20,7 +20,7 @@
                 type="text"
                 label="Last Name"
                 placeholder="Enter last name"
-                v-model="user.username"
+                v-model="customer.lastName"
               >
               </fg-input>
             </div>
@@ -32,7 +32,7 @@
                 type="text"
                 label="Email"
                 placeholder="Enter Email"
-                v-model="user.address"
+                v-model="customer.email"
               >
               </fg-input>
             </div>
@@ -45,7 +45,7 @@
                 type="text"
                 label="Credit Limit"
                 placeholder="Enter a credit limit"
-                v-model="user.firstName"
+                v-model="customer.creditLimit"
               >
               </fg-input>
             </div>
@@ -55,14 +55,14 @@
                 type="text"
                 label="Income Level"
                 placeholder="Enter income level"
-                v-model="user.lastName"
+                v-model="customer.incomeLevel"
               >
               </fg-input>
             </div>
             <!-- Region -->
             <div class="col-md-4">
               <label for="region">Region</label>
-              <select id="region" class="form-control" placeholder="Enter a Region">
+              <select id="region" class="form-control" placeholder="Enter a Region" v-model="customer.region">
                 <option>A</option>
                 <option>B</option>
                 <option>C</option>
@@ -71,7 +71,7 @@
           </div>
 
           <div class="text-center">
-            <p-button type="info" round @click.native.prevent="updateProfile">
+            <p-button type="info" round @click.prevent="created">
               Create Customer
             </p-button>
           </div>
@@ -81,28 +81,51 @@
     </card>
   </template>
   <script>
-  export default {
-    data() {
-      return {
-        user: {
-          company: "",
-          username: "",
-          email: "",
-          firstName: "",
-          lastName: "",
-          address: "",
-          city: "",
-          postalCode: "",
-          aboutMe: ``,
-        },
-      };
-    },
-    methods: {
-      updateProfile() {
-        alert("Your data: " + JSON.stringify(this.user));
+ 
+import Card from "@/components/Cards/Card.vue";
+import axios from 'axios';
+
+export default {
+  components: {
+    Card,
+  },
+  data() {
+    return {
+      customer: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        creditLimit: "",
+        incomeLevel: "",
+        region: "",
       },
+    };
+  },
+  methods: {
+    updateProfile() {
+      alert("Your data: " + JSON.stringify(this.user));
     },
-  };
-  </script>
-  <style></style>
-  
+    listCustomers(){
+      axios.get('http://localhost:3000/customers')
+      .then(res => this.customers = res.data.obj);
+    },
+    created(){
+      axios.post('http://localhost:3000/customers', {
+        firstName: this.customer.firstName,
+        lastName: this.customer.lastName,
+        email: this.customer.email,
+        creditLimit: this.customer.creditLimit,
+        incomeLevel: this.customer.incomeLevel,
+        region: this.customer.region
+      }).then(res => {
+        console.log(res);
+        this.$router.push('/customers');
+      }).catch(err => {
+        this.msg = err.response.data.message;
+        console.log(err);
+      });
+    }
+  },
+};
+</script>
+<style></style>
