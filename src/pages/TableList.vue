@@ -57,12 +57,17 @@ export default {
     };
   },
   methods: {
-    list(){
-      axios.get('http://localhost:3000/customers')
+    async list(){ 
+      try{
+      await axios.get('https://dv786379-3000.usw3.devtunnels.ms/customers/')
       .then(res => this.customers = res.data.obj);
+      } catch(err){
+        console.error(err)
+      }
     },
-    edit(customer_id){
-            axios.get(`http://localhost:3000/customers/${customer_id}`)
+    async edit(customer_id){
+      try{
+            await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/${customer_id}`)
             .then(res => {
                 console.log(res);
                 this.$router.push(`/edit-customer/${customer_id}`)
@@ -70,9 +75,13 @@ export default {
                 this.msg = err.response.data.message;
                 console.log(err);
             });
+          } catch(err){
+            console.error(err)
+          }
     },
-    deleteP(customer_id, region){
-        axios.delete(`http://localhost:3000/projects/${customer_id, region}`)
+    async deleteP(customer_id, region){
+      try{
+        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/projects/${customer_id, region}`)
         .then(res => {
             console.log(res);
             this.list();
@@ -80,6 +89,9 @@ export default {
             this.msg = err.response.data.message;
             console.log(err);
         });
+      } catch(err){
+        console.error(err)
+      }
     },
   },
   mounted(){
