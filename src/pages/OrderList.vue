@@ -30,7 +30,7 @@
                     <td>{{ order.order_mode }}</td>
                     <td>{{ order.customer_id }}</td>
                     <td>{{ order.order_status }}</td>
-                    <td>{{ order.total_order }}</td>
+                    <td>{{ order.order_total }}</td>
                     <td>{{ order.sales_rep_id }}</td>
                     <td>{{ order.promotion_id }}</td>
                     <!-- <td><router-link tag="button"
