@@ -4,8 +4,8 @@
       <h1>Bases de datos distribuidas</h1>
       <h2>Proyecto segundo parcial</h2>
       <h4>Computo Paralelo y Distribuido</h4>
-      <h5>Manuel Balderrama y Juan Angel Cepeda</h5>
-      <p>Este es un párrafo de ejemplo. Puedes agregar aquí la descripción de tu producto o cualquier información adicional que desees destacar en la landing page.</p>
+      <h5>Manuel Balderrama | Juan Angel Cepeda | Eduardo Rodriguez | Miguel Cortinas</h5>
+      <p>Aplicación sobre una arquitectura de base de datos distribuidas.</p>
     </div>
   </div>
 </template>

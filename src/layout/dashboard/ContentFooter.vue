@@ -12,7 +12,7 @@
         &copy; Coded with
         <i class="fa fa-heart heart"></i> by
         <a href="https://github.com/ManuelBalderramaCh" target="_blank">
-          &nbsp; Manuel Balderrama, Juan Angel Cepeda.</a
+          &nbsp; Manuel Balderrama | Juan Angel Cepeda | Miguel Cortinas | Eduardo Rodriguez.</a
         >&nbsp; Designed by
         <a href="https://github.com/Juan-Angel-Cepeda" target="_blank"
           >&nbsp; FING Team.</a
