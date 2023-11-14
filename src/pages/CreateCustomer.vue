@@ -81,9 +81,9 @@
           </div>
 
           <div class="text-center">
-            <p-button type="submit" round @click.prevent="created">
+            <button type="submit" @click.prevent="created">
               Create Customer
-            </p-button>
+            </button>
           </div>
           <div class="clearfix"></div>
         </form>

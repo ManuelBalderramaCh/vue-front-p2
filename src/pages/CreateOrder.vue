@@ -6,10 +6,10 @@
             <div class="col-md-5">
               <fg-input
                 type="text"
-                label="Order Date"
+                label="Order Id"
                 :disabled="false"
-                placeholder="Enter the order date"
-                v-model="order.order_date"
+                placeholder="Enter the order id"
+                v-model="order.order_id"
               >
               </fg-input>
             </div>
@@ -80,9 +80,9 @@
           </div>
   
           <div class="text-center">
-            <p-button type="info" round @click.prevent="created">
+            <button type="info" round @click.prevent="created">
               Create Order
-            </p-button>
+            </button>
           </div>
           <div class="clearfix"></div>
         </form>
@@ -97,7 +97,7 @@ import axios from 'axios';
       return {
         order: {
           order_id: "",
-          order_date: "",
+          // order_date: "",
           order_mode: "",
           customer_id: "",
           order_status: "",
@@ -105,6 +105,7 @@ import axios from 'axios';
           sales_rep_id: "",
           promotion_id: "",
         },
+        customers: null
       };
     },
     methods: {
@@ -112,13 +113,13 @@ import axios from 'axios';
         alert("Your data: " + JSON.stringify(this.user));
       },
       listCustomers(){
-        axios.get('http://localhost:3000/customers')
-             .then( res => this.customers = res.data.obj)
+        axios.get('https://dv786379-3000.usw3.devtunnels.ms/customers')
+             .then( res => this.customers = res.data)
       },
       created(){
-        axios.post('http://localhost:3000/orders', {
+        axios.post('https://dv786379-3000.usw3.devtunnels.ms/orders', {
           order_id: this.order.order_id,
-          order_date: this.order.order_date,
+          // order_date: this.order.order_date,
           order_mode: this.order.order_mode,
           customer_id: this.order.customer_id,
           order_status: this.order.order_status,

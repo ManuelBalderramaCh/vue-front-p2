@@ -121,9 +121,9 @@
           </div>
         </div>
         <div class="text-center">
-          <p-button type="info" round @click.prevent="created">
+          <button type="info" round @click.prevent="created">
             Create Product
-          </p-button>
+          </button>
         </div>
         <div class="clearfix"></div>
       </form>
@@ -131,6 +131,7 @@
   </card>
 </template>
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -154,7 +155,7 @@ export default {
       alert("Your data: " + JSON.stringify(this.user));
     },
     created(){
-      axios.post('http://localhost:3000/products', {
+      axios.post('https://dv786379-3000.usw3.devtunnels.ms/products', {
         product_id: this.product.product_id,
         product_name: this.product.product_name,
         product_description: this.product.product_description,
