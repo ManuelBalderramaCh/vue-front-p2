@@ -93,9 +93,9 @@
         </div>
 
         <div class="text-center">
-          <p-button type="info" round @click.prevent="edit">
+          <button type="info" round @click.prevent="edit" class="button button-blue">
             Edit Order
-          </p-button>
+          </button>
         </div>
         <div class="clearfix"></div>
       </form>
@@ -128,11 +128,11 @@ export default {
       alert("Your data: " + JSON.stringify(this.user));
     },
     list(){
-      axios.get('http://localhost:3000/orders/' + this.id)
+      axios.get('https://dv786379-3000.usw3.devtunnels.ms/orders/' + this.id)
            .then(res => this.order = res.data.obj);
     },
     edit(){
-      axios.put(`http://localhost:3000/products/${product_id}`, {
+      axios.put(`https://dv786379-3000.usw3.devtunnels.ms/products/${product_id}`, {
         order_id: this.order.order_id,
         order_date: this.order.order_date,
         order_mode: this.order.order_mode,
@@ -155,4 +155,24 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>/* Estilo base del botón */
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 25px; /* Hace que el botón sea redondo */
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilo para el color de fondo azul */
+.button-blue {
+  background-color: #96c0ed;
+  color: #fff; /* Color del texto */
+}
+
+/* Estilo para el efecto de hover */
+.button:hover {
+  opacity: 0.8; /* Reduce la opacidad al pasar el ratón sobre el botón */
+}</style>

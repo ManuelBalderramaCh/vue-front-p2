@@ -130,9 +130,9 @@
           </div>
         </div>
         <div class="text-center">
-          <p-button type="info" round @click.prevent="edit">
+          <button type="info" round @click.prevent="edit(id)" class="button button-blue">
             Edit Product
-          </p-button>
+          </button>
         </div>
         <div class="clearfix"></div>
       </form>
@@ -168,11 +168,11 @@ export default {
       alert("Your data: " + JSON.stringify(this.user));
     },
     list(){
-      axios.get('http://localhost:3000/products/' + this.id)
-      .then(res => this.product = res.data.obj);
+      axios.get('https://dv786379-3000.usw3.devtunnels.ms/products/' + this.id)
+      .then(res => this.product = res.data);
     },
-    edit(product_id){
-      axios.put(`http://localhost:3000/products/${product_id}`, {
+    edit(id){
+      axios.put(`https://dv786379-3000.usw3.devtunnels.ms/products/${id}`, {
         product_id: this.product.product_id,
         product_name: this.product.product_name,
         product_description: this.product.product_description,

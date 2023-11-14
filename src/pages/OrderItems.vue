@@ -61,12 +61,12 @@ export default {
         console.log(err);
       }
     },
-    async edit(order_item_id) {
+    async edit(order_id) {
       try {
-        await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/order_items/${order_item_id}`)
+        await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/order_items/${order_id}/`)
           .then(res => {
             console.log(res);
-            this.$router.push(`/order_item-edit/${order_item_id}`)
+            this.$router.push(`/edit-order-item/${order_id}`)
           }).catch(err => {
             this.msg = err.response.data.message;
             console.log(err);
@@ -75,9 +75,9 @@ export default {
         console.log(err)
       }
     },
-    async deleteP(order_item_id,line_item_id){
+    async deleteP(order_id,line_item_id){
       try{
-        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/order_items/${order_item_id}/${line_item_id}`)
+        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/order_items/${order_id}/${line_item_id}`)
         .then(res => {
             console.log(res);
             this.list();

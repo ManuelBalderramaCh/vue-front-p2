@@ -61,9 +61,7 @@ export default {
       try{
       await axios.get('https://dv786379-3000.usw3.devtunnels.ms/customers/')
       .then(res => {
-        console.log(res)
         this.customers = res.data
-        console.log(this.customers)
       });
       } catch(err){
         console.error(err)

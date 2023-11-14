@@ -63,9 +63,9 @@
         </div>
 
         <div class="text-center">
-          <p-button type="info" round @click.prevent="edit">
+          <button type="info" round @click.prevent="edit(id)" class="button button-blue">
             Edit Order Item
-          </p-button>
+          </button>
         </div>
         <div class="clearfix"></div>
       </form>
@@ -94,12 +94,16 @@ export default {
     updateProfile() {
       alert("Your data: " + JSON.stringify(this.user));
     },
-    list(){
-      axios.get('http://localhost:3000/order_items/' + this.id)
-      .then(res => this.product = res.data.obj);
+    async list(){
+      try{
+      await axios.get('https://dv786379-3000.usw3.devtunnels.ms/order_items/' + this.id)
+      .then(res => this.order_item = res.data);
+      }catch(err){
+        console.log(err)
+      }
     },
-    edit(order_item_id){
-      axios.put(`http://localhost:3000/order_items/${order_item_id}`, {
+    edit(id){
+      axios.put(`https://dv786379-3000.usw3.devtunnels.ms/order_items/${id}`, {
         order_id: this.order_item.order_id,
         line_item_id: this.order_item.line_item_id,
         product_id: this.order_item.product_id,

@@ -121,7 +121,7 @@
           </div>
         </div>
         <div class="text-center">
-          <button type="info" round @click.prevent="created">
+          <button type="info" round @click.prevent="created" class="button button-blue">
             Create Product
           </button>
         </div>
@@ -178,4 +178,24 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>/* Estilo base del botón */
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 25px; /* Hace que el botón sea redondo */
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilo para el color de fondo azul */
+.button-blue {
+  background-color: #96c0ed;
+  color: #fff; /* Color del texto */
+}
+
+/* Estilo para el efecto de hover */
+.button:hover {
+  opacity: 0.8; /* Reduce la opacidad al pasar el ratón sobre el botón */
+}</style>
