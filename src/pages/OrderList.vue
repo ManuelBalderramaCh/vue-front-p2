@@ -33,8 +33,8 @@
                     <td>{{ order.total_order }}</td>
                     <td>{{ order.sales_rep_id }}</td>
                     <td>{{ order.promotion_id }}</td>
-                    <td><router-link tag="button"
-                                        class="btn btn-light btn-sm">Ir</router-link></td>
+                    <!-- <td><router-link tag="button"
+                                        class="btn btn-light btn-sm">Ir</router-link></td> -->
                     <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(order.order_id)">Edit</button></td>
                     <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(order.order_id)">Delete</button></td>
                   </tr>
@@ -60,12 +60,17 @@ export default {
     };
   },
   methods: {
-    list(){
-      axios.get('http://localhost:3000/orders')
-      .then(res => this.orders = res.data.obj);
+    async list(){
+      try{
+      await axios.get('https://dv786379-3000.usw3.devtunnels.ms/orders')
+      .then(res => this.orders = res.data);
+      }catch(err){
+        console.log(err)
+      }
     },
-    edit(order_id){
-            axios.get(`http://localhost:3000/orders/${order_id}`)
+    async edit(order_id){
+          try{
+            await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/orders/${order_id}`)
             .then(res => {
                 console.log(res);
                 this.$router.push(`/edit-order/${order_id}`)
@@ -73,9 +78,13 @@ export default {
                 this.msg = err.response.data.message;
                 console.log(err);
             });
+          }catch(err){
+            console.log(err)
+          }
     },
-    deleteP(order_id){
-        axios.delete(`http://localhost:3000/orders/${order_id}`)
+    async deleteP(order_id){
+      try{
+        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/orders/${order_id}`)
         .then(res => {
             console.log(res);
             this.list();
@@ -83,6 +92,9 @@ export default {
             this.msg = err.response.data.message;
             console.log(err);
         });
+      }catch(err){
+        console.log(err)
+      }
     },
   },
   mounted(){

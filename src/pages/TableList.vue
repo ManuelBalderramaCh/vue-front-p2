@@ -31,8 +31,8 @@
                     <td>{{ customer.cust_email }}</td>
                     <td>{{ customer.income_level }}</td>
                     <td>{{ customer.region }}</td>
-                    <td><router-link tag="button"
-                                        class="btn btn-light btn-sm">Ir</router-link></td>
+                    <!-- <td><router-link tag="button"
+                                        class="btn btn-light btn-sm">Ir</router-link></td> -->
                     <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(customer.customer_id)">Edit</button></td>
                     <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(customer.customer_id, customer.region)">Delete</button></td>
                   </tr>
@@ -53,21 +53,25 @@ export default {
   },
   data() {
     return {
-      customers: null,
+      customers: [],
     };
   },
   methods: {
     async list(){ 
       try{
       await axios.get('https://dv786379-3000.usw3.devtunnels.ms/customers/')
-      .then(res => this.customers = res.data.obj);
+      .then(res => {
+        console.log(res)
+        this.customers = res.data
+        console.log(this.customers)
+      });
       } catch(err){
         console.error(err)
       }
     },
     async edit(customer_id){
       try{
-            await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/${customer_id}`)
+            await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/customers/${customer_id}/`)
             .then(res => {
                 console.log(res);
                 this.$router.push(`/edit-customer/${customer_id}`)
@@ -81,7 +85,7 @@ export default {
     },
     async deleteP(customer_id, region){
       try{
-        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/projects/${customer_id, region}`)
+        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/customers/${customer_id}/${region}`)
         .then(res => {
             console.log(res);
             this.list();

@@ -27,10 +27,10 @@
                     <td>{{ orderItem.product_id  }}</td>
                     <td>{{ orderItem.unit_price }}</td>
                     <td>{{ orderItem.quantity }}</td>
-                    <td><router-link tag="button"
-                                        class="btn btn-light btn-sm">Ir</router-link></td>
+                    <!-- <td><router-link tag="button"
+                                        class="btn btn-light btn-sm">Ir</router-link></td> -->
                     <td><button type="button" tag="button" class="btn btn-info btn-sm" @click="edit(orderItem.order_id)">Edit</button></td>
-                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(orderItem.order_id)">Delete</button></td>
+                    <td><button type="button" tag="button" class="btn btn-danger btn-sm" @click="deleteP(orderItem.order_id, orderItem.line_item_id)">Delete</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -53,22 +53,31 @@ export default {
     };
   },
   methods: {
-    list(){
-      axios.get('http://localhost:3000/order_items')
-      .then(res => this.orderItems = res.data.obj);
+    async list(){
+      try{
+        await axios.get('https://dv786379-3000.usw3.devtunnels.ms/order_items')
+        .then(res => this.orderItems = res.data);
+      }catch(err){
+        console.log(err);
+      }
     },
-    edit(order_item_id){
-            axios.get(`http://localhost:3000/order_items/${order_item_id}`)
-            .then(res => {
-                console.log(res);
-                this.$router.push(`/order_item-edit/${order_item_id}`)
-            }).catch(err => {
-                this.msg = err.response.data.message;
-                console.log(err);
-            });
+    async edit(order_item_id) {
+      try {
+        await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/order_items/${order_item_id}`)
+          .then(res => {
+            console.log(res);
+            this.$router.push(`/order_item-edit/${order_item_id}`)
+          }).catch(err => {
+            this.msg = err.response.data.message;
+            console.log(err);
+          });
+      } catch (err) {
+        console.log(err)
+      }
     },
-    deleteP(order_item_id){
-        axios.delete(`http://localhost:3000/order_items/${order_item_id}`)
+    async deleteP(order_item_id,line_item_id){
+      try{
+        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/order_items/${order_item_id}/${line_item_id}`)
         .then(res => {
             console.log(res);
             this.list();
@@ -76,6 +85,9 @@ export default {
             this.msg = err.response.data.message;
             console.log(err);
         });
+      }catch(err){
+        console.log(err)
+      }
     },
   },
   mounted(){

@@ -65,12 +65,17 @@ export default {
     };
   },
   methods: {
-    list(){
-      axios.get('http://localhost:3000/products')
-      .then(res => this.products = res.data.obj);
+    async list(){
+      try{
+      await axios.get('https://dv786379-3000.usw3.devtunnels.ms/products')
+      .then(res => this.products = res.data);
+      }catch(err){
+        console.log(err)
+      }
     },
-    edit(product_id){
-            axios.get(`http://localhost:3000/products/${product_id}`)
+    async edit(product_id){
+      try{
+            await axios.get(`https://dv786379-3000.usw3.devtunnels.ms/products/${product_id}`)
             .then(res => {
                 console.log(res);
                 this.$router.push(`/edit-product/${product_id}`)
@@ -78,9 +83,13 @@ export default {
                 this.msg = err.response.data.message;
                 console.log(err);
             });
+          }catch(err){
+            console.log(err)
+          }
     },
-    deleteP(product_id){
-        axios.delete(`http://localhost:3000/products/${product_id}`)
+    async deleteP(product_id){
+      try{
+        await axios.delete(`https://dv786379-3000.usw3.devtunnels.ms/products/${product_id}`)
         .then(res => {
             console.log(res);
             this.list();
@@ -88,6 +97,9 @@ export default {
             this.msg = err.response.data.message;
             console.log(err);
         });
+      }catch(err){
+        console.log(err)
+      }
     },
   },
   mounted(){
