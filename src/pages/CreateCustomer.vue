@@ -81,7 +81,7 @@
           </div>
 
           <div class="text-center">
-            <p-button type="info" round @click.prevent="created">
+            <p-button type="submit" round @click.prevent="created">
               Create Customer
             </p-button>
           </div>
@@ -117,11 +117,11 @@ export default {
       alert("Your data: " + JSON.stringify(this.user));
     },
     listCustomers(){
-      axios.get('http://localhost:3000/customers')
+      axios.get('https://dv786379-3000.usw3.devtunnels.ms/customers')
       .then(res => this.customers = res.data.obj);
     },
     created(){
-      axios.post('http://localhost:3000/customers', {
+      axios.post('https://dv786379-3000.usw3.devtunnels.ms/customers', {
         cust_first_name: this.customer.cust_first_name,
         cust_last_name: this.customer.cust_last_name,
         customer_id: this.customer.customer_id,
