@@ -27,7 +27,7 @@
                     <td>{{ customer.customer_id}}</td>
                     <td>{{ customer.cust_first_name }}</td>
                     <td>{{ customer.cust_last_name }}</td>
-                    <td>{{ customer.creditLimit }}</td>
+                    <td>{{ customer.credit_limit }}</td>
                     <td>{{ customer.cust_email }}</td>
                     <td>{{ customer.income_level }}</td>
                     <td>{{ customer.region }}</td>
